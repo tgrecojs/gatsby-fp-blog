@@ -1,0 +1,119 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 2.1.4"/><link as="script" rel="preload" href="/webpack-runtime-0e72f99e061d7c91eca2.js"/><link as="script" rel="preload" href="/app-cc43b1ae28bf3d483e01.js"/><link as="script" rel="preload" href="/0-f0bbd76435b121c16af7.js"/><link as="script" rel="preload" href="/component---src-templates-blog-post-js-5094763090713163ba2e.js"/><link as="fetch" rel="preload" href="/static/d/772/path---functors-part-1-c-37-864-bkKFnjDzPUSPJy1Gl6U485VuVzU.json" crossorigin="use-credentials"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group"><style data-emotion-css="1w4n303">.css-1w4n303{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;min-height:100vh;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;font-family:'avenir';color:#F7F7F8;}</style><div class="css-1w4n303 esb8sd10"><style data-emotion-css="unlsbt">body{margin:0;padding:0;}a{color:#fff;-webkit-text-decoration:none;text-decoration:none;-webkit-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}.twitter{color:#000;}a:hover{-webkit-transform:scale(1.1);-ms-transform:scale(1.1);transform:scale(1.1);}</style><style data-emotion-css="jn46sz">.css-jn46sz{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:100%;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:space-around;-webkit-justify-content:space-around;-ms-flex-pack:space-around;justify-content:space-around;background:#fff;color:#445492;padding-bottom:10px;border-bottom:2px solid #181e34;}</style><div class="css-jn46sz e1dwugdh1"><style data-emotion-css="djzghw">.css-djzghw{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;text-align:center;width:60%;}</style><div class="css-djzghw e1dwugdh0"><h2 style="margin-bottom:0">Functor.xyz</h2><p>A personal blog created with one goal in mind: Bringing readers from A to Z in the world of FP.</p></div></div><style data-emotion-css="1bzynvf">.css-1bzynvf{-webkit-flex:1;-ms-flex:1;flex:1;background:#2C365E;padding-top:10px;}</style><div class="css-1bzynvf esb8sd11"><style data-emotion-css="dvxtzn">.css-dvxtzn{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}</style><div class="css-dvxtzn esb8sd12"><style data-emotion-css="f3f2fv">.css-f3f2fv{font-family:'avenir';width:80%;background:#445492;padding:15px;margin-bottom:10px;border:2px solid #181E34;}</style><div class="css-f3f2fv esb8sd13"><div><h1>Functors Rd. 1 - A gentle intro.</h1>
+<p>What more fitting of a way to kick of the posts section of functor.xyz then with a bit on functors! Alright. Let's <em>contain</em> our excitement though - we've got some work to do. 😎</p>
+<p>In this post we're going to learn what requirements must be meant in order for something to be considered a functor.</p>
+<h4>"You can't put me in a box"</h4>
+<p>The essence of a <strong>functor data type</strong> is that it is <code class="language-text">mappable</code>. This simply means that it provides a container (or box) that we can <code class="language-text">map()</code> through in order to transform values.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">				map(a→b)
+[Box of `a`s] ------&gt; [Box of `b`s]</code></pre></div>
+<p>Hmmm.... A container that we can map through. 🤔 Sounds kinda familiar, right? Well that's because it is! JavaScript's <code class="language-text">Array []</code> type is a functor. Whether you've realized it or not you have been using functors all along!</p>
+<h5>Testing <code class="language-text">map</code></h5>
+<p>Below we see the the functor <code class="language-text">a</code> which is a single element array <code class="language-text">[10]</code>. Our second functor <code class="language-text">b</code> is then created using JavaScript's built-in <code class="language-text">Array.prototype.map</code> method.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> <span class="token function-variable function">doubleIt</span> <span class="token operator">=</span> x <span class="token operator">=></span> x <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> functor <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> x <span class="token operator">=</span> functor<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>doubleIt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> y <span class="token operator">=</span> functor<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>x <span class="token operator">=></span> x <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// testing equality</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> y<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span></code></pre></div>
+<p>It's really that simple. If you're a skeptic like me, then you might be having a hard time buying this. Just sit tight though it will all make sense soon.</p>
+<h3>Category Theory</h3>
+<p>Functional Programming is deeply rooted in category theory - here are its basics:</p>
+<ol>
+<li>
+<p><strong>Category</strong>: A collection of objects and arrows between objects.</p>
+<ul>
+<li>Objects can be anything. * ex. <code class="language-text">[{name: &#39;Tom&#39;, age: 26}]</code>, <code class="language-text">[10,30]</code>, <code class="language-text">[&#39;$&#39;]</code></li>
+</ul>
+</li>
+<li>
+<p><strong>morphisms</strong></p>
+<ul>
+<li>Arrays</li>
+<li>Example above | ex. <code class="language-text">A −f→ B</code></li>
+</ul>
+</li>
+</ol>
+<h4>Functor Laws:</h4>
+<p>There two functor laws are:</p>
+<ol>
+<li>
+<p><strong>Identity</strong>:</p>
+<ul>
+<li>id function must always <code class="language-text">map</code> a functor back to the <strong>same value</strong>,</li>
+<li><code class="language-text">const id = x =&gt; x;</code></li>
+<li><code class="language-text">[1,2,3].map(id); // returns [1,2,3]</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Composition</strong>:</p>
+<ul>
+<li>Functors of the same type can be computed in any order and it will not effect their value.</li>
+<li><em>Given <code class="language-text">g: x =&gt; y, f: y =&gt; z</code> where <code class="language-text">x,y,z</code> are collection objects...</em> <strong>there must be a composition that directly <code class="language-text">X → Z</code></strong>.</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>This composition law was the same that I was forced to learn in algebra class. It' <strong>associative</strong> meaning that the order in which it is computer does not matter. Realizing this was a big "a-ha" moment when studying functional programming.</p>
+</blockquote>
+<blockquote>
+<p><strong>Ex.:</strong> (f ◦ g) ◦ h = f ◦ g ◦ h = f ◦ (g ◦ h)</p>
+</blockquote>
+<p>Now that we know the functor laws lets apply them to another array. Below we have the following:</p>
+<ol>
+<li><code class="language-text">f</code> takes an <code class="language-text">x</code> and divides by <code class="language-text">.5</code></li>
+<li><code class="language-text">g</code> takes an <code class="language-text">x</code> and multiplies by <code class="language-text">16</code></li>
+<li><code class="language-text">data</code> is a functor containing 4 values.</li>
+</ol>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token function-variable function">f</span> <span class="token operator">=</span> x <span class="token operator">=></span> x <span class="token operator">/</span> <span class="token number">0.5</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token function-variable function">g</span> <span class="token operator">=</span> x <span class="token operator">=></span> x <span class="token operator">*</span> <span class="token number">16</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">25</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">// identity law</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> data<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>x <span class="token operator">=></span> x<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 25 === 25</span>
+
+<span class="token comment">// composition law</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>
+  functor
+    <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>g<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> functor<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>x <span class="token operator">=></span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token function">g</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h5>Who f*ckin cares dude</h5>
+<blockquote>
+<p>Why the FUCK do I care about these stupid fucking functor laws man.... Shit is sooo FUCKING stupid.</p>
+<ul>
+<li>Majority of people reading this posts</li>
+</ul>
+</blockquote>
+<p>Maybe you're not impressed with our <code class="language-text">data</code> array and the one value that it includes. functor's satisfy the <code class="language-text">Identity</code> and <code class="language-text">composition</code> law. Well, that's too bad but don't give up just yet.</p>
+<h4>Creating the <code class="language-text">Box</code> functor</h4>
+<p>We've seen functors in action and we've learned the rules that they must abide by. Now let's create one for ourselves.</p>
+<p>The <code class="language-text">Box</code> functor (often referred to as the <code class="language-text">Identity</code> functor) will take a value as it's input. From there, it will return an object <code class="language-text">{}</code> with a <code class="language-text">map</code> method inside of it. When this <code class="language-text">map</code> executes, it will apply it's input <code class="language-text">fn</code> to the value inside and return it's result wrapped inside of. What's that you said? This <code class="language-text">map</code> implementation sure sounds awfully familiar to JavaScript's<code class="language-text"></code>Array.prototype.map`. Well, friend, <em>that's because it is</em> !</p>
+<p>Taking a look at the code snippet below we see how our <code class="language-text">Box</code> function's <code class="language-text">map</code> method is implemented. Cool, right?</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> <span class="token function-variable function">Box</span> <span class="token operator">=</span> value <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+  map<span class="token punctuation">:</span> fn <span class="token operator">=></span> <span class="token function">Identity</span><span class="token punctuation">(</span><span class="token function">fn</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> OurFirstFunctor <span class="token operator">=</span> <span class="token function">Box</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<p><img src="&#x27;../../../imgs/boring.gif" alt="boring"></p>
+<p>Alright, I get it. Let's extend this a little bit by adding some more methods, <code class="language-text">fold</code> and <code class="language-text">inspectValue</code>.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> <span class="token function-variable function">Box</span> <span class="token operator">=</span> value <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+  map<span class="token punctuation">:</span> f <span class="token operator">=></span> <span class="token function">Box</span><span class="token punctuation">(</span><span class="token function">f</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  fold<span class="token punctuation">:</span> <span class="token punctuation">(</span>f<span class="token punctuation">,</span> g<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">f</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  inspectValue<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token template-string"><span class="token string">`Box</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>value<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token comment">// identity law</span>
+<span class="token keyword">const</span> <span class="token function-variable function">id</span> <span class="token operator">=</span> x <span class="token operator">=></span> x<span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token function">Box</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> x1 <span class="token operator">=</span> result<span class="token punctuation">;</span>
+<span class="token keyword">const</span> x2 <span class="token operator">=</span> result<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+x2<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>trace<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// value:: 1</span>
+x1<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>trace<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// value:: 1</span>
+
+<span class="token comment">// composition law f(x) * g(x) = f(g(x))</span></code></pre></div>
+<h3>Wrap up</h3>
+<p>And thus conclude this intro post on functors. Hopefully you've learned something that you didn't prior to reading this.</p>
+<p>Need Improvemen? Give me a call!</p></div><div style="display:flex;justify-content:space-around;width:80px"><a href="/functors-rd-2"><button>Next: <!-- -->Functors Round 2: </button></a></div></div></div></div><style data-emotion-css="1opt7sq">.css-1opt7sq{background:#fff;color:#363732;text-align:center;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}</style><div class="css-1opt7sq ey8o79j0"><p>Created by Thomas Greco 2019</p><div>Follow on Twitter<!-- --> <a class="twitter" href="https://twitter.com/tgrecojs">tgrecojs</a></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.page={"componentChunkName":"component---src-templates-blog-post-js","jsonName":"functors-part-1-c37","path":"/functors-part-1"};window.dataPath="772/path---functors-part-1-c-37-864-bkKFnjDzPUSPJy1Gl6U485VuVzU";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-cc43b1ae28bf3d483e01.js"],"component---src-templates-all-tags-index-js":["/component---src-templates-all-tags-index-js-fd4b2a077215822aeec9.js"],"component---src-templates-single-tag-index-js":["/component---src-templates-single-tag-index-js-eae9d79b8caf8c1ac6b9.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-5094763090713163ba2e.js"],"component---src-pages-index-js":["/component---src-pages-index-js-eebd414bcf69e5ea4066.js"],"pages-manifest":["/pages-manifest-6797b4d3c70bb4476ef4.js"]};/*]]>*/</script><script src="/component---src-templates-blog-post-js-5094763090713163ba2e.js" async=""></script><script src="/0-f0bbd76435b121c16af7.js" async=""></script><script src="/app-cc43b1ae28bf3d483e01.js" async=""></script><script src="/webpack-runtime-0e72f99e061d7c91eca2.js" async=""></script></body></html>
