@@ -37,6 +37,7 @@ const PostContent = styled('div')`
   width: 80%;
   background: ${childBg};
   padding: 15px;
+  margin-bottom: 10px;
   border: 2px solid ${border};
 `;
 

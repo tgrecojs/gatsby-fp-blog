@@ -1,10 +1,10 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-
+import Layout from '../components/Layout'
 const AllTagsTemplate = ({ pageContext }) => {
   const { tags } = pageContext;
   return (
-    <div style={{ fontFamily: 'avenir' }}>
+    <Layout>
       <div>
         <ul>
           {tags.map((tagName, index) => {
@@ -16,7 +16,7 @@ const AllTagsTemplate = ({ pageContext }) => {
           })}
         </ul>
       </div>
-    </div>
+    </Layout>
   );
 };
 

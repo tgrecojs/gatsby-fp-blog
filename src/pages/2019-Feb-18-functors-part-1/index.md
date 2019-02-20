@@ -1,7 +1,7 @@
 ---
 path: "/functors-part-1"
 date: "2019-09-18"
-title: "Functors: Part 1"
+title: "Functors Round 1: Functor Law Abiding Citizen"
 tags: ["functors", "functional programming", "javascript"]
 excerpt: "It's only fitting that the inaugural post on functor.xyz covers the topics of functors! Anything else would be just criminal. That being said, this post will help readers demystify what a functor really is by learning about the functor laws. (spoiler: you've already been using them). To cap this off we will learn how to create our own home-made functor."
 ---
@@ -10,7 +10,7 @@ excerpt: "It's only fitting that the inaugural post on functor.xyz covers the to
 
 What more fitting of a way to kick of the posts section of functor.xyz then with a bit on functors! Alright. Let's _contain_ our excitement though - we've got some work to do. 😎
 
-In this post we're going to learn what requirements must be meant in order for something to be considered a fucntor.
+In this post we're going to learn what requirements must be meant in order for something to be considered a functor.
 
 #### "You can't put me in a box"
 
@@ -61,7 +61,7 @@ There two functor laws are:
    - Functors of the same type can be computed in any order and it will not effect their value.
    - _Given `g: x => y, f: y => z` where `x,y,z` are collection objects..._ **there must be a composition that directly `X → Z`**.
 
-> This composistion law was the same that I was forced to learn in algebra class. It' **associatve** meaning that the order in which it is computer does not matter. Realizing this was a big "a-ha" moment when studying functional programming.
+> This composition law was the same that I was forced to learn in algebra class. It' **associative** meaning that the order in which it is computer does not matter. Realizing this was a big "a-ha" moment when studying functional programming.
 
 > **Ex.:** (f ◦ g) ◦ h = f ◦ g ◦ h = f ◦ (g ◦ h)
 
@@ -79,7 +79,7 @@ const data = [25];
 // identity law
 console.log(data.toString() === data.map(x => x).toString()); // 25 === 25
 
-// composistion law
+// composition law
 console.log(
   functor
     .map(g)
@@ -94,7 +94,7 @@ console.log(
 >
 > - Majority of people reading this posts
 
-Maybe you're not impressed with our `data` array and the one value that it includes. functor's satisfy the `Identity` and `Composistion` law. Well, that's too bad but don't give up just yet.
+Maybe you're not impressed with our `data` array and the one value that it includes. functor's satisfy the `Identity` and `composition` law. Well, that's too bad but don't give up just yet.
 
 #### Creating the `Box` functor
 
@@ -136,7 +136,7 @@ const x2 = result.map(id);
 x2.map(trace); // value:: 1
 x1.map(trace); // value:: 1
 
-// composistion law f(x) * g(x) = f(g(x))
+// composition law f(x) * g(x) = f(g(x))
 ```
 
 ### Wrap up
