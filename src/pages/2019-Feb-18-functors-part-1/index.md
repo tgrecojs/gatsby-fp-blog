@@ -7,21 +7,39 @@ excerpt: "It's only fitting that the inaugural post on functor.xyz covers the to
 ---
 
 # Functors Rd. 1 - A gentle intro.
+Greetings! It's Thomas Greco here - sending a friendly hello to any and all checking out this post. Rather than rambling on about nonsense though let's break into it! 
 
-What more fitting of a way to kick of the posts section of functor.xyz then with a bit on functors! Alright. Let's _contain_ our excitement though - we've got some work to do. 😎
+The topic for today's post is **functors**. The term functor, like the majority of terms used in functional programming, sounds overly confusing and can even a bit intimidating. Before we if you're new to functional programming feel like it's too complex,
 
-In this post we're going to learn what requirements must be meant in order for something to be considered a functor.
+5 minutes from now you'll certainly agree.
+It's important to keep in mind tha
 
-#### "You can't put me in a box"
+Now that i've done my warm up let's dive in by taking a look at what it means for something to be considered **functor data type**.
 
-The essence of a **functor data type** is that it is `mappable`. This simply means that it provides a container (or box) that we can `map()` through in order to transform values.
+## "You can't put me in a box"
 
+The essence of a **functor data type** is that it is `mappable`. This simply means that it provides a container (or box) that we can `map` through in order to read or transform values. Hmmm.... A container that we can map through. 🤔 Sounds kinda familiar, right? 
+
+```js
+const myFunctor = [1,2,3,4,5]
 ```
-				map(a→b)
+
+Above we see the `myFunctor` variable being set to an array, or a container, with values inside of it. You know what this means? It means you've been mastering functors all along 😎. 
+
+### Prove it
+Hopefully by now you're beginning to cozy up to the complex terminology used in FP. Bef
+
+The goal for this article, and every article in this series, is essentially the same: to remove the confusion that stems from FPs terminology. 
+
+
+in this series will be to demystify these confusing words used  that comes with using
+as well my series of articles is to  
+these posts we will
+JavaScript's `Array []` type is a functor.
+
+```				map(a→b)
 [Box of `a`s] ------> [Box of `b`s]
 ```
-
-Hmmm.... A container that we can map through. 🤔 Sounds kinda familiar, right? Well that's because it is! JavaScript's `Array []` type is a functor. Whether you've realized it or not you have been using functors all along!
 
 ##### Testing `map`
 
