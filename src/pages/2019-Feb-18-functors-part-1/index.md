@@ -55,18 +55,6 @@ const y = functor.map(x => x * 2);
 console.log(x.toString() === y.toString()); // true
 ```
 
-It's really that simple. If you're a skeptic like me, then you might be having a hard time buying this. Just sit tight though it will all make sense soon.
-
-### Category Theory
-
-Functional Programming is deeply rooted in category theory - here are its basics:
-
-1. **Category**: A collection of objects and arrows between objects.
-   - Objects can be anything. \* ex. `[{name: 'Tom', age: 26}]`, `[10,30]`, `['$']`
-2. **morphisms**
-   - Arrays
-   - Example above | ex. `A −f→ B`
-
 #### Functor Laws:
 
 There two functor laws are:
